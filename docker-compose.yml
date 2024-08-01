@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  backend:
+    container_name: backend
+    image: backend:latest
+    networks:
+      - transendance
+    build: ./folder
+    volumes:
+      - backend_data:/var/lib/backend/data
+
+networks:
+  transendance:
+    driver: bridge
+
+volumes:
+  backend_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/nfs/homes/aatki/Desktop/forPostgre/backend'
