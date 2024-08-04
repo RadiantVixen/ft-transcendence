@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  backend:
+    container_name: backend
+    image: backend:latest
+    networks:
+      - transendance
+    build: ./folder
+    volumes:
+      - backend_data:/var/lib/backend
+
+networks:
+  transendance:
+    driver: bridge
+
+volumes:
+  backend_data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/nfs/homes/aatki/Desktop/forPostgre/ft/folder/backend'
+
+
+my_django_project/
+│
+├── docker-compose.yml
+├── Dockerfile
+├── .env
+└── src/
+    └── myproject/
+        ├── manage.py
+        ├── myproject/
+        │   ├── __init__.py
+        │   ├── settings.py
+        │   ├── urls.py
+        │   └── wsgi.py
+        └── ... (other Django app files)
