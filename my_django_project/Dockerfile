@@ -10,7 +10,7 @@ WORKDIR /usr/src/app
 
 # Install dependencies
 COPY requirements.txt /usr/src/app/
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt --break-system-packages
 
 # Copy project files
 COPY . /usr/src/app/

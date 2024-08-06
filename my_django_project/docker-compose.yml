@@ -29,3 +29,11 @@ services:
 
 volumes:
   postgres_data:
+
+
+
+    # driver: local
+    # driver_opts:
+    #   type: 'none'
+    #   o: 'bind'
+      # device: '/nfs/homes/aatki/Desktop/ft/my_django_project/volume'
