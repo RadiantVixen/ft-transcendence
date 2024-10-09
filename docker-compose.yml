@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  my-postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: mypassword
+    networks:
+      - transcendence
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  web:
+    build: .
+    command: ["python", "./oauth2/manage.py", "runserver", "0.0.0.0:8000"]
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - my-postgres
+    networks:
+      - transcendence
+
+networks:
+  transcendence:
+    driver: bridge
+
+volumes:
+  pgdata:
+    driver: local
+    driver_opts:
+        type: 'none'
+        o: 'bind'
+        device: './volume'
