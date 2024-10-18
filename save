@@ -1,0 +1,39 @@
+
+
+
+
+
+
+
+"https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-bc2f557b0cd67cf89944dec62442840ee4b57414beead8fc557d1b1e678cbcea&redirect_uri=http://localhost:8000/callback/&response_type=code"
+
+https://controller.access.network/102/portal/
+
+212679416533
+
+{
+    "user_name" : "aatki",
+    "password" : "passworddd",
+    "email" : "aicha@gmail.com",
+    "first_name" : "aicha",
+    "last_name" : "atki",
+    "language" : "english"
+}
+
+{
+    "username" : "aatki",
+    "password" : "passworddd"
+}
+
+{
+    "user_id": "1",
+    "friend_id": "2"
+}
+
+{
+    "otp_code": "13535"
+}
+
+{
+    "avatar" : "https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=2048x2048&w=is&k=20&c=8QovDK9XochFpaIC-N3pn5EEaRSVuE1SKpQDVUxLSUk="
+}

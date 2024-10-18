@@ -11,8 +11,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 
-from pathlib import Path
 
+
+from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,8 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #addittion
     'rest_framework',
-    'social_django',
+    'rest_framework_simplejwt',
     'Oapp',
     'django_otp',
     'django_otp.plugins.otp_totp',
@@ -143,33 +146,34 @@ from dotenv import load_dotenv
 load_dotenv()
 # done
 
+# for the default profile image
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+# done
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',  # Use JWT for token-based authentication
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',  # Ensure APIs require authentication
+    ),
+}
+
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    # 'social_core.backends.fortytwo.FortyTwoOAuth2',
     'Oapp.backends.FortyTwoBackend',
 )
 
 FORTY_TWO_CLIENT_ID = os.getenv('SOCIAL_AUTH_42_KEY')
 FORTY_TWO_CLIENT_SECRET = os.getenv('SOCIAL_AUTH_42_SECRET')
 REDIRECT_URI = os.getenv('REDIRECT_URI')
-# SOCIAL_AUTH_42_SCOPE = ['public']  # Add any additional scopes you need
 
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = '/'
+# LOGIN_URL = 'login'
+# LOGIN_REDIRECT_URL = '/'
 
 # LOGOUT_REDIRECT_URL = 'login'
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': [
-#         'rest_framework.authentication.SessionAuthentication',
-#     ],
-#     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
-# }
-
-# SESSION_ENGINE = 'django.contrib.sessions.backends.db'
-
-# SESSION_COOKIE_SECURE = False
-# SESSION_COOKIE_SAMESITE = 'None'
-
+AUTH_USER_MODEL = 'Oapp.User'
 

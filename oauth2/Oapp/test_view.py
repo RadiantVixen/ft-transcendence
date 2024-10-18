@@ -2,9 +2,8 @@
 from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.contrib.auth.models import User
 from rest_framework.generics import ListAPIView
-from .models import Profile, Friendship
+from .models import Profile, Friendship, User
 from .serializers import ProfileSerializer, UserSerializer, FriendshipSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
@@ -29,7 +28,6 @@ class ShowUser(APIView):
                 return Response({
                 "message": "User authenticated successfully",
                 "user_info": {
-                    "id" : user.profile.fortytwo_id,
                     "avatar" : user.profile.avatar,
                     "language" : user.profile.language,
                     "username": user.username,
@@ -57,7 +55,6 @@ class AllUserInfo(APIView):
             'code': code,
             'redirect_uri': settings.REDIRECT_URI,
         }
-        
         response = requests.post(token_url, data=data)
         response.raise_for_status()
         token_data = response.json()
@@ -77,6 +74,6 @@ from django.urls import path
 urlpatterns = [
     path('listing/', UserListView.as_view(), name='users_list'),
     path('profiles/', ProfileListView.as_view(), name='profile-list'),
-    path('profile/<int:user_id>/', ShowUser.as_view(), name='profile'),
+    path('profile2/<int:user_id>/', ShowUser.as_view(), name='profile2'),
 ]
 

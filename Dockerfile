@@ -9,7 +9,7 @@ COPY requirements.txt .
 
 # Install any dependencies
 RUN pip install --no-cache-dir -r requirements.txt
-
+# RUN pip install -e /path/to/my-shared-models
 
 # Copy the content of the local src directory to the working directory
 COPY ./oauth2 .

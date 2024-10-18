@@ -8,9 +8,8 @@ from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from PIL import Image
 from rest_framework import status
-from django.contrib.auth.models import User
 from rest_framework.generics import ListAPIView
-from .models import Profile, Friendship
+from .models import Profile, Friendship, User
 from .serializers import ProfileSerializer, UserSerializer, FriendshipSerializer
 
 def generate_qr_code(request):
@@ -57,6 +56,15 @@ def verify_otp(request):
             return Response({"status": "invalid code"}, status=400)
     except TOTPDevice.DoesNotExist:
         return Response({"status": "no device found"}, status=404)
+
+
+
+
+
+
+# path('friends/<int:user_id>/', FriendsListView.as_view(), name='friends-list'),
+# path('friends/add/', AddFriendView.as_view(), name='add-friend'),
+# path('friends/remove/', RemoveFriendView.as_view(), name='remove-friend'),
 
 class FriendsListView(APIView):
     def get(self, request, user_id):
